@@ -14,9 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                script {
                 sh '$(date +%Y-%m-%d--%H_%M_%S)'
-                }
             }
         }
         stage('Test') {
