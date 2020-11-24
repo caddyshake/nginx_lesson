@@ -15,7 +15,6 @@ pipeline {
             steps {
                 echo 'Building..'
                 echo '$(date)'
-                #sh '${PULL}'
             }
         }
         stage('Test') {
