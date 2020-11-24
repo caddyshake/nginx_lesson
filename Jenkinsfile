@@ -34,7 +34,8 @@ pipeline {
     }
     post {
         success {
-            sh 'echo "Build finished. " | mail -s "Build done." "root@jenkins"'
+            echo '${STAGE}'
+            sh 'echo "Build finished at stage  " | mail -s "Build done." "root@jenkins"'
         }
         failure {
             sh 'echo "Build failed at stage ${STAGE} " | mail -s "Failure" "root@jenkins"'
