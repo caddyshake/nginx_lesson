@@ -34,11 +34,11 @@ pipeline {
     }
     post {
         success {
-            echo '${STAGE}'
+            echo '${env.STAGE}'
             sh 'echo "Build finished at stage  " | mail -s "Build done." "root@jenkins"'
         }
         failure {
-            sh 'echo "Build failed at stage ${STAGE} " | mail -s "Failure" "root@jenkins"'
+            sh 'echo "Build failed at stage ${env.STAGE} " | mail -s "Failure" "root@jenkins"'
         }
     }
 }
