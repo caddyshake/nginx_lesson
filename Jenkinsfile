@@ -5,8 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh 'git pull'
-                echo 'git pull'
+                sh 'git pull origin master'
                 sh 'docker build -t nginx-kirin:v1 .'
                 echo '$?'
             }
