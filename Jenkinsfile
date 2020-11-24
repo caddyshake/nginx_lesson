@@ -14,7 +14,8 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                sh '${PULL}'
+                echo '$(date)'
+                #sh '${PULL}'
             }
         }
         stage('Test') {
