@@ -25,7 +25,7 @@ pipeline {
     }
     post {
         success {
-            sh 'echo "Pipeline done successfully ${currentBuild.fullDisplayName}" | mail -s "Success" "to@address"'
+            sh 'mail -s "Success ${currentBuild.fullDisplayName}" "to@address"'
         }
         failure {
             sh 'echo "Pipeline failed ${currentBuild.fullDisplayName}" | mail -s "Failed" "to@address"'
