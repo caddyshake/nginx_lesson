@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'docker build -t nginx-kirin:v1 .'
             }
         }
         stage('Test') {
