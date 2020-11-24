@@ -15,8 +15,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 script {
-                    def now = new Date()
-                    println now.format("yyMMdd.HHmm", TimeZone.getTimeZone('UTC'))
+                echo "sh $(date +%Y-%m-%d--%H_%M_%S)"
                 }
             }
         }
