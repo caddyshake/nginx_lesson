@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             environment {
-                STAGE = stage('Build')
+                STAGE = "Build"
             }
             steps {
                 echo 'Building..'
@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             environment {
-                STAGE = stage('Test')
+                STAGE = "Test"
             }
             steps {
                 echo 'Testing..'
@@ -23,7 +23,7 @@ pipeline {
         }
         stage('Push') {
             environment {
-                STAGE = stage('Push')
+                STAGE = "Push"
             }
             steps {
                 echo 'Deploying....'
