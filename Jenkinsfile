@@ -25,14 +25,10 @@ pipeline {
     }
     post {
         success {
-            mail to: 'root@jenkins',
-                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                body: "Something is wrong with ${env.BUILD_URL}"
+            sh 'echo "Pipeline done successfully ${currentBuild.fullDisplayName}" | mail -s "Success" "to@address"'
         }
         failure {
-            mail to: 'root@jenkins',
-                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-                body: "Something is wrong with ${env.BUILD_URL}"
+            sh 'echo "Pipeline failed ${currentBuild.fullDisplayName}" | mail -s "Failed" "to@address"'
         }
     }
 }
