@@ -25,10 +25,14 @@ pipeline {
     }
     post {
         success {
-            mail to: 'root@localhost', subject: "Pipeline Done: ${currentBuild.fullDisplayName}", body: "Check if you need ${env.BUILD_URL}"
+            echo 'I will always say Hello again!'
+
+            emailext body: "${currentBuild.currentResult}: Job ${env.JOB_NAME} build ${env.BUILD_NUMBER}\n More info at: ${env.BUILD_URL}",
+                recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']],
+                subject: "Jenkins Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}"
         }
         failure {
-            mail to: 'root@localhost', subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}"
+            echo 'Fail'
         }
     }
 }
