@@ -12,7 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                dgoss run nginx-kirin:v1 > ~/dgoss.log 2>&1
+                sh 'dgoss run nginx-kirin:v1 > ~/dgoss.log 2>&1'
                 sh 'bash ~/script.sh'
             }
         }
