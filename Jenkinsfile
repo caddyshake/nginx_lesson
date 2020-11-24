@@ -31,7 +31,7 @@ pipeline {
                 echo "Stage = ${env.STAGE}"
                 echo 'Deploying....'
                 sh 'docker tag nginx-kirin:$(date +%Y-%m-%d-%H-%M)  caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%M)'
-                sh 'docker push caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%M)'
+                sh 'docker push caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%)'
             }
         }
     }
@@ -41,8 +41,9 @@ pipeline {
             sh 'echo "Build finished at stage ${env.STAGE}" | mail -s "Build done." "root@jenkins"'
         }
         failure {
-            echo "${env.STAGE}"
-            sh 'echo "Build failed at stage ${env.STAGE}" | mail -s "Failure" "root@jenkins"'
+            mail to: 'root@jenkins',
+                subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
