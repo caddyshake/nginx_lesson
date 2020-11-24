@@ -31,14 +31,15 @@ pipeline {
                 echo "Stage = ${env.STAGE}"
                 echo 'Deploying....'
                 sh 'docker tag nginx-kirin:$(date +%Y-%m-%d-%H-%M)  caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%M)'
-                sh 'docker push caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%)'
+                sh 'docker push caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%M)'
             }
         }
     }
     post {
         success {
-            echo "${env.STAGE}"
-            sh 'echo "Build finished at stage ${env.STAGE}" | mail -s "Build done." "root@jenkins"'
+            mail to: 'root@jenkins',
+                subject: "Pipeline done: ${currentBuild.fullDisplayName}",
+                body: "Pipeline was finished with ${env.BUILD_URL}"
         }
         failure {
             mail to: 'root@jenkins',
