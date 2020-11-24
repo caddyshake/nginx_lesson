@@ -15,7 +15,7 @@ pipeline {
             steps {
                 echo 'Building..'
                 script {
-                echo "sh $(date +%Y-%m-%d--%H_%M_%S)"
+                echo 'sh $(date +%Y-%m-%d--%H_%M_%S'
                 }
             }
         }
