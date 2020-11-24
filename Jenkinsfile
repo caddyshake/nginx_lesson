@@ -18,6 +18,8 @@ pipeline {
         stage('Push') {
             steps {
                 echo 'Deploying....'
+                sh 'docker tag nginx-kirin:$(date +%Y-%m-%d-%H-%M)  caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%M)'
+                sh 'docker push caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%M)'
             }
         }
     }
