@@ -25,10 +25,10 @@ pipeline {
     }
     post {
         success {
-            sh 'mail -s "Success ${currentBuild.fullDisplayName}" "to@address"'
+            mail to: 'root@localhost', subject: "Pipeline Done: ${currentBuild.fullDisplayName}", body: "Check if you need ${env.BUILD_URL}"
         }
         failure {
-            sh 'echo "Pipeline failed ${currentBuild.fullDisplayName}" | mail -s "Failed" "to@address"'
+            mail to: 'root@localhost', subject: "Failed Pipeline: ${currentBuild.fullDisplayName}", body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
