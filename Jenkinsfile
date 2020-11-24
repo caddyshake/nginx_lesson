@@ -7,7 +7,7 @@ pipeline {
                 echo 'Buildig..'
                 sh 'git pull origin master'
                 sh 'docker build -t nginx-kirin:v1 .'
-                sh 'echo $?'
+                sh '$?'
             }
         }
         stage('Test') {
