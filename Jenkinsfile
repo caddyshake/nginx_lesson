@@ -7,6 +7,7 @@ pipeline {
                 STAGE = "Build"
             }
             steps {
+                echo '${env.STAGE}'
                 echo 'Building..'
                 sh 'git pull origin master && docker build -t nginx-kirin:$(date +%Y-%m-%d-%H-%M) .'
             }
@@ -16,6 +17,7 @@ pipeline {
                 STAGE = "Test"
             }
             steps {
+                echo '${env.STAGE}'
                 echo 'Testing..'
                 sh 'dgoss run nginx-kirin:$(date +%Y-%m-%d-%H-%M) | tee ~/dgoss.log'
                 sh 'bash test.sh'
@@ -26,6 +28,7 @@ pipeline {
                 STAGE = "Push"
             }
             steps {
+                echo '${env.STAGE}'
                 echo 'Deploying....'
                 sh 'docker tag nginx-kirin:$(date +%Y-%m-%d-%H-%M)  caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%M)'
                 sh 'docker push caddyshake/nginx-kirin:$(date +%Y-%m-%d-%H-%M)'
