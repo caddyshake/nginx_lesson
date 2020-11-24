@@ -21,7 +21,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 sh '${TEST}'
-                sh 'bash ~/script.sh'
+                sh 'bash ~/test.sh'
             }
         }
         stage('Push') {
