@@ -12,7 +12,8 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh ' bash ~/script.sh'
+                sh 'pwd'
+                sh 'bash ~/script.sh'
             }
         }
         stage('Push') {
