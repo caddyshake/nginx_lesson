@@ -12,8 +12,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                sh '${TEST}'
-                sh 'bash ~/test.sh'
+                sh 'bash test.sh'
             }
         }
         stage('Push') {
